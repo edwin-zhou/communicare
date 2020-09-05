@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
-    name: String,
+    start: Date,
+    end: Date,
+    title: String,
     description: String,
     caregiver: String,
     customer: String,
-    frequency: Number,
-	time: Date,
-	duration: Number,
-	nextAppointment: Date,
+    qualifications: Array,
 })
 
 module.exports = mongoose.model("Task", taskSchema)
