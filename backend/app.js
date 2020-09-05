@@ -26,16 +26,16 @@ app.use('/:param',(req, res, next) => {
 })
 
 // set database URL:
-const dbURL = 'mongodb+srv://andy123:123@cluster0-esicd.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority'
+const dbURL = 'mongodb+srv://admin:admin@communicare.s0a4z.azure.mongodb.net/<communicare>?retryWrites=true&w=majority'
 
 // connect mongoose to Mongodb
 mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}, (err) => {
-    if (err) {
-      console.log(err)
-    }
-    else {
-      console.log('mongoose connected')
-    }
+  if (err) {
+    console.log(err)
+  }
+  else {
+    console.log('mongoose connected')
+  }
 })
 
 
