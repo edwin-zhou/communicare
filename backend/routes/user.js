@@ -4,36 +4,41 @@ const User = require("../models/User")
 
 const router = express.Router()
 
-router.get('', (req, res, next) => {
-    User.find({username: req.query.username}, (err, result) => {
+router.post('/login', (req, result, next) => {
+    User.find({$and: [{username: req.body.username}, {password: req.body.password}]}, (err, res) => {
       if (err) {
-        res.status(500).json({
+        result.status(500).json({
           message: err
         })
       } else {
-        res.status(200).json({
-          user: result
+        console.log('asd')
+        result.status(200).json({
+          username: res.username
         })
       }
     })
 })
 
-router.post('', (req, ress, next) => {
+router.post('', (req, result, next) => {
     User.find({username: req.body.username},
         (err, res) => {
         if (err) {
-            res.status(500).json({
+            result.status(500).json({
                 message: err
             })
         } else if (res.length === 1) {
-            res.status(500).json({
+          result.status(409).json({
                 message: 'username taken'
             })
         } else if (res.length === 0) {
+            console.log("Success!")
             const newUser = new User({username : req.body.username, 
                                     password: req.body.password, 
                                     qualifications: req.body.qualifications})
-            newUser.save()
+          newUser.save()
+          result.status(200).json({
+            user: newUser,
+          })
         }
     })
 })

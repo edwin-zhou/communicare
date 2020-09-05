@@ -21,16 +21,16 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use("/task", taskRoute)
-app.use("/user", userRoute)
+app.use("/api/task", taskRoute)
+app.use("/api/user", userRoute)
 
 // serve angular
-app.use('/:param',(req, res, next) => {
-  res.sendFile(path.resolve(__dirname, '..', 'website', 'dist', 'website', req.params.param))
-})
+// app.use('/:param',(req, res, next) => {
+//   res.sendFile(path.resolve(__dirname, '..', 'website', 'dist', 'website', req.params.param))
+// })
 
 // set database URL:
-const dbURL = 'mongodb+srv://admin:admin@communicare.s0a4z.azure.mongodb.net/<communicare>?retryWrites=true&w=majority'
+const dbURL = 'w'
 
 // connect mongoose to Mongodb
 mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}, (err) => {

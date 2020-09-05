@@ -7,7 +7,7 @@ import { userModel } from '../models/user.model';
   providedIn: 'root'
 })
 export class LoginPageService {
-  url = "http://localhost:3000/api/user"
+  url = "http://localhost:3000/api/user/login"
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -15,14 +15,15 @@ export class LoginPageService {
 
   //returns user info with credentials
   login(credentials: {username: string, password: string}){
-    return this.http.get<{
+    console.log('xd')
+    return this.http.post<{
       username: string
       password: string
       category: string
       caregivers: []
       customers: []
       schedule: []
-    }>(this.url,{headers: credentials});
+    }>(this.url, credentials);
   }
 
 
