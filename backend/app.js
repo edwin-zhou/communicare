@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // routes import here
-
+const taskRoute = require('./routes/task')
+const userRoute = require('./routes/user')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -20,10 +21,13 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use("/api/task", taskRoute)
+app.use("/api/user", userRoute)
+
 // serve angular
-app.use('/:param',(req, res, next) => {
-  res.sendFile(path.resolve(__dirname, '..', 'website', 'dist', 'website', req.params.param))
-})
+// app.use('/:param',(req, res, next) => {
+//   res.sendFile(path.resolve(__dirname, '..', 'website', 'dist', 'website', req.params.param))
+// })
 
 // set database URL:
 const dbURL = 'mongodb+srv://admin:admin@communicare.s0a4z.azure.mongodb.net/<communicare>?retryWrites=true&w=majority'
