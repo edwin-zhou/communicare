@@ -1,6 +1,52 @@
-<router-outlet></router-outlet>
-<app-create-task></app-create-task>
-<!-- <app-marketplace></app-marketplace> -->
-<app-calendar></app-calendar>
+<!-- menu bar -->
+<mat-toolbar color='primary' class="row">
+    <span class="col mr-auto">Communicare</span>
+    <span class="col-auto">
+        <button mat-raised-button [matMenuTriggerFor]="menu" color='primary'>Hi, SIMP Ady</button>
+        <mat-menu #menu="matMenu">
+            <span mat-menu-item><app-logout></app-logout></span>
+        </mat-menu>
+    </span>
+</mat-toolbar>
 
+<br>
 
+<!-- if logged out -->
+<div class="container" *ngIf='!session'>
+    <app-login-page>
+
+    </app-login-page>
+</div>
+
+<!-- if logged in -->
+<div class="container" *ngIf='session'>
+    <mat-card>
+        <mat-card-content>
+            <app-marketplace></app-marketplace>
+        </mat-card-content>
+    </mat-card>
+    
+    <br>
+    <hr>
+    <br>
+
+    <button mat-raised-button color='primary'>Get Help</button>
+    
+    <br>
+    <hr>
+    <br>
+
+    <mat-card>
+        <mat-card-content>
+            <app-calendar></app-calendar>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<!-- footer -->
+<mat-toolbar color='primary' class="container-fluid row" style="position: fixed; bottom: 0;">
+    <span>About</span>
+    <span>
+        <mat-icon>call</mat-icon>
+    </span>
+</mat-toolbar>

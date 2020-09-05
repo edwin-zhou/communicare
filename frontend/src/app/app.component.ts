@@ -1,3 +1,4 @@
+import { SessionService } from './services/session.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  session: boolean = false
+
+  constructor(private SessionService: SessionService) {
+    this.session = this.SessionService.session()
+  }
 }
