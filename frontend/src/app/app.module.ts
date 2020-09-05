@@ -40,10 +40,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
