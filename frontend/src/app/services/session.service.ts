@@ -11,6 +11,7 @@ export class SessionService {
 
   constructor() { }
 
+  /** return true if user is logged in */
   session(): boolean {
     if (sessionStorage.getItem('username')) {
       this._sessionState.next(true)

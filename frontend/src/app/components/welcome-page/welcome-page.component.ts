@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-page.component.scss']
 })
 export class WelcomePageComponent implements OnInit {
-
+  cols: number = 1
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  expand() {
+  }
 }

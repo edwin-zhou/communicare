@@ -1,17 +1,12 @@
 <div class="container">
-    <form class="row">
-        <mat-form-field class="col align-self-center">
-            <input matInput type="text" placeholder="username">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="col align-self-center">
-            <input matInput type="password" placeholder="password">
-        </mat-form-field>
-        <br>
-        <button mat-button>Login</button>      
-    </form>
-    <hr>
-    <button mat-button class="col align-self-center">
-        Register
-    </button>
+    <mat-card class="container-fluid">
+        <mat-card-title>
+            <button mat-button (click)='expand()'>
+                <mat-icon>fullscreen</mat-icon>
+            </button>
+        </mat-card-title>
+        <mat-card-content class="text-wrap">
+            <app-marketplace></app-marketplace>
+        </mat-card-content>
+    </mat-card>
 </div>
