@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { SessionService } from 'src/app/services/session.service';
 import { RegistrationPageService } from 'src/app/services/registration-page.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class RegistrationPageComponent implements OnInit {
 
   constructor(
     private sessionService: SessionService,
-    private registrationPageService: RegistrationPageService
+    private registrationPageService: RegistrationPageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onSubmit()  {
-    // check form validyy && if logged in
+    // check form validity && if logged in
     if(!this.registrationForm.valid){
       return
     }
@@ -63,8 +65,8 @@ export class RegistrationPageComponent implements OnInit {
         sessionStorage.setItem('username', userData.user.username)
         localStorage.setItem('username', userData.user.username)
       }
-
     )
+    this.router.navigate(['/login'])
   }
   checkPasswordValidity: boolean = false
   checkPasswordsMatch(control: FormControl) {
