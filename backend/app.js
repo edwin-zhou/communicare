@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 // routes import here
-
+const taskRoute = require('./routes/task')
+const userRoute = require('./routes/user')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -19,6 +20,9 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "POST, DELETE, GET, PUT")
     next()
 })
+
+app.use("/task", taskRoute)
+app.use("/user", userRoute)
 
 // serve angular
 app.use('/:param',(req, res, next) => {
