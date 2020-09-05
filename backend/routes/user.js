@@ -30,7 +30,7 @@ router.post('/login', (req, result, next) => {
         })
       } else {
         result.status(200).json({
-          username: res.username
+          username: res[0].username
         })
       }
     })
