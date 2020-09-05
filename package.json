@@ -1,0 +1,22 @@
+{
+  "name": "communicare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ed99win/communicare.git"
+  },
+  "author": "edwin, simon, andy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ed99win/communicare/issues"
+  },
+  "homepage": "https://github.com/ed99win/communicare#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
