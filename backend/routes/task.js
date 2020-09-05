@@ -6,17 +6,17 @@ const User = require("../models/User")
 const router = express.Router()
 
 router.post('', (req, result, next) => {
-    console.log("Success!")
     const newTask = new Task({start: req.body.start, 
                               end: req.body.end, 
                               title: req.body.title,
                               description: req.body.description,
-                              customer: req.body.username,
+                              customer: req.body.customer,
                               qualifications: req.body.qualifications})
     newTask.save()
     result.status(200).json({
         message: "Success!"
     })
+    console.log(newTask)
 })
 
 router.post('/accept', (req, result, next) => {

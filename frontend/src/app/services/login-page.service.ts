@@ -15,7 +15,6 @@ export class LoginPageService {
 
   //returns user info with credentials
   login(credentials: {username: string, password: string}){
-    console.log('xd')
     return this.http.post<{
       username: string
       password: string

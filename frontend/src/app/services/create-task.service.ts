@@ -6,11 +6,17 @@ import { task } from '../models/task.model';
   providedIn: 'root'
 })
 export class CreateTaskService {
-  url = "http://localhost:3000/api/user"
+  url = "http://localhost:3000/api/task"
 
   constructor(private http: HttpClient) { }
 
   createTask(task: task) {
-    return this.http.post<any>(this.url, task);
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.url, task).subscribe((res) => {
+        resolve('xd')
+      }, (err) => {
+        reject('not xd')
+      })
+    })
   }
 }

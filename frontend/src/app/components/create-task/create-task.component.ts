@@ -25,13 +25,13 @@ export class CreateTaskComponent implements OnInit {
       return;
     }
     let newTask = {
-      start: this.form.value.start,
-      end: this.form.value.end,
+      start: new Date(),
+      end: new Date(),
       title: this.form.value.title,
       description: this.form.value.description,
       caregiver: "",
-      customer: this.form.value.customer,
-      qualifications: this.form.value.tags,
+      customer: localStorage.getItem('username'),
+      qualifications: ["xd"],
     }
     this.createTaskService.createTask(newTask)
     this.form.reset();

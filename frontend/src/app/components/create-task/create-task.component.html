@@ -1,6 +1,20 @@
-<mat-card>
+<form [formGroup]="form" (submit)="onSaveTask()">
+
+    <label>Task Title</label>
+    <input formControlName="title">
+
+    <label>Task Description</label>
+    <input formControlName="description">
+
+    <label>Task Tags</label>
+    <input formControlName="tags">
+
+    <button mat-raised-button color="accent" type="submit">Get Help!</button>
+</form>
+
+<!-- <mat-card> -->
     <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
-    <form [formGroup]="form" (submit)="onSaveTask()">
+    <!-- <form [formGroup]="form" (submit)="onSaveTask()">
   
       <mat-form-field>
         <input matInput type="text" formControlName="title" placeholder="Task Title">
@@ -10,7 +24,7 @@
       <mat-form-field>
         <textarea matInput rows="4" formControlName="content" placeholder="Task Content"></textarea>
         <mat-error *ngIf="form.get('content').invalid">Please enter something</mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
   
       <!-- <mat-form-field class="example-chip-list">
         <mat-chip-list #chipList aria-label="tag selection">
@@ -28,7 +42,7 @@
       </mat-form-field> -->
   
   
-      <hr>
+      <!-- <hr>
       <button mat-raised-button color="accent" type="submit">Save Post</button>
-    </form>
-  </mat-card>
+    </form> -->
+  <!-- </mat-card> -->
