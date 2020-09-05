@@ -1,1 +1,78 @@
-<p>registration-page works!</p>
+<form
+  ngbAutofocus
+  class='modal-body'
+  id='form'
+  (ngSubmit)="onSubmit()"
+  #form
+  [formGroup]='registrationForm'
+  *ngIf='!sessionState'>
+    <h1 class='modal-title'>Registration</h1>
+    <hr>
+    <!-- username -->
+    <mat-form-field appearance="outline" class='form-group' id="username">
+      <mat-label for='username'>Username</mat-label>
+      <input matInput formControlName='username' placeholder="Enter a Username" autocomplete="off">
+      <small id="passwordHelpBlock" class="text-danger" *ngIf="checkUsernameLength()">Your username must be between 2 and 15 characters long.</small>
+    </mat-form-field>
+    <!-- password confirmation -->
+    <div formGroupName='passwords' class="row">
+      <!-- password -->
+      <mat-form-field appearance="outline" class='form-group col-6'>
+        <mat-label for='password'>Password</mat-label>
+        <input matInput
+        placeholder="Enter a password"
+        formControlName='password'
+        [type]="hide ? 'password' : 'text'">
+        <small id="passwordHelpBlock" class="text-danger" *ngIf="checkPasswordLength()">your password should be between 5-15 characters</small>
+        <button mat-button
+        type='button'
+        mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <!-- confirm password -->
+      <mat-form-field appearance="outline" class='form-group col-6'>
+        <mat-label for='password'>Confirm your password</mat-label>
+        <input matInput
+        placeholder="confirm your password"
+        formControlName='confirmPassword'
+        [type]="hide1 ? 'password' : 'text'">
+        <small id="passwordHelpBlock" class="text-danger" *ngIf="checkPasswordValidity">your passwords do not match</small>
+        <button
+        type="button"
+        mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide1">
+        <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <!-- categories -->
+    <mat-form-field >
+      <mat-chip-list #chipList aria-label="tag selection">
+        <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                 [removable]="removable" (removed)="removeTag(tag)">
+          {{tag}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="add a tag..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <!-- checkbox -->
+    <div>
+      <mat-checkbox class='form-group'
+        formControlName='checkbox'>
+        <label class='form-check-label' for='terms'>I have read and understand the terms & conditions of this agreement</label>
+      </mat-checkbox>
+    </div>
+    <br>
+    <!-- submit -->
+    <button mat-raised-button color='primary'>Register</button>
+  </form>
+  <div class="container-fluid" style="height: 100%; padding: 1%; background-color: white;" *ngIf='sessionState'>
+    <h2>You are already registered</h2>
+  </div>
