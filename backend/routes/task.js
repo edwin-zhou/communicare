@@ -5,6 +5,19 @@ const User = require("../models/User")
 
 const router = express.Router()
 
+router.post('/help', (req, result, next) => {
+    Task.find({$and: [{caregiver: {$ne: ""}}, {customer: {$ne: req.body.username}}]}, (err, res) => {
+        if (err) {
+          console.log('xd')
+            result.status(500).json({
+                message: err
+            })
+        } else {
+            result.status(200).json(res)
+        }
+    })
+})
+
 router.post('', (req, result, next) => {
     const newTask = new Task({start: req.body.start, 
                               end: req.body.end, 
