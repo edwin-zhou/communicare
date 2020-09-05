@@ -48,6 +48,16 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import * as moment from 'moment';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+};
 
 @NgModule({
   declarations: [
@@ -56,7 +66,8 @@ import { MarketplaceComponent } from './components/marketplace/marketplace.compo
     LoginPageComponent,
     RegistrationPageComponent,
     LogoutComponent,
-    MarketplaceComponent
+    MarketplaceComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +118,10 @@ import { MarketplaceComponent } from './components/marketplace/marketplace.compo
     MatTooltipModule,
     MatTreeModule,
     NgbModule,
+    CommonModule,
+    FlatpickrModule.forRoot(),
+    FormsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent]
