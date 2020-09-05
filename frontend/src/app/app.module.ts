@@ -44,13 +44,15 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomePageComponent,
     LoginPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
