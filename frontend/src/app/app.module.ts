@@ -54,6 +54,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -67,7 +68,8 @@ export function momentAdapterFactory() {
     RegistrationPageComponent,
     LogoutComponent,
     MarketplaceComponent,
-    CalendarComponent
+    CalendarComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,

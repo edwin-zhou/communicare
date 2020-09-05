@@ -4,6 +4,24 @@ const User = require("../models/User")
 
 const router = express.Router()
 
+router.post('/delete', (req, result, next) => {
+      
+})
+
+router.get('/schedule', (req, result, next) => {
+    User.find({username: req.query.username}, (err, res) => {
+        if (err) {
+          result.status(500).json({
+            message: err
+          })
+        } else {
+          result.status(200).json({
+            schedule: res.schedule
+          })
+        }
+    })
+})
+
 router.post('/login', (req, result, next) => {
     User.find({$and: [{username: req.body.username}, {password: req.body.password}]}, (err, res) => {
       if (err) {
@@ -11,7 +29,6 @@ router.post('/login', (req, result, next) => {
           message: err
         })
       } else {
-        console.log('asd')
         result.status(200).json({
           username: res.username
         })

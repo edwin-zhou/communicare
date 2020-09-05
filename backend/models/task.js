@@ -7,7 +7,7 @@ const taskSchema = mongoose.Schema({
     description: String,
     caregiver: String,
     customer: String,
-    rrule: {}
+    qualifications: Array,
 })
 
 module.exports = mongoose.model("Task", taskSchema)

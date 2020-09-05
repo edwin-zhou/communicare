@@ -1,8 +1,9 @@
 export class task {
-  name: string
-  description: string
-  frequency: number
-  time: Date
-  duration: number
-  nextAppointment: Date
+  start: Date
+  end: Date
+  title: String
+  description: String
+  caregiver: String
+  customer: String
+  qualifications: String[]
 }
