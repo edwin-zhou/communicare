@@ -66,17 +66,6 @@ export class RegistrationPageComponent implements OnInit {
 
     )
   }
-
-
-
-
-
-
-
-
-
-
-
   checkPasswordValidity: boolean = false
   checkPasswordsMatch(control: FormControl) {
     if (this.registrationForm) {
@@ -124,7 +113,7 @@ export class RegistrationPageComponent implements OnInit {
       input.value = '';
     }
     this.registrationForm.patchValue({ tags: this.tags });
-    this.registrationForm.get("tags").updateValueAndValidity();
+    this.registrationForm.get("qualifications").updateValueAndValidity();
 
   }
 
@@ -134,8 +123,6 @@ export class RegistrationPageComponent implements OnInit {
       this.tags.splice(index, 1);
     }
     this.registrationForm.patchValue({ tags: this.tags });
-    this.registrationForm.get("tags").updateValueAndValidity();
+    this.registrationForm.get("qualifications").updateValueAndValidity();
   }
-
-
 }
