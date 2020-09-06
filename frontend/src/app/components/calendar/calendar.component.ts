@@ -59,22 +59,25 @@ export class CalendarComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.calendarService.getSchedule().then((res: any) => {
-      this.recurringEvents = res
-      console.log(res)
-      this.recurringEvents.forEach(event =>{
-        for(let i=0; i < 365/event.frequency; i ++){
-          this.events.push({
-          start : addDays(event.start, i * event.frequency),
-          end: addDays(event.end, i * event.frequency),
-          title: event.title,
-          color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
-          })
-        }
-      })
-    }).catch((err) => {
-      console.log(err)
-    })    
+    if (this.SessionService.session()) {
+      this.calendarService.getSchedule().then((res: any) => {
+        this.recurringEvents = res
+        console.log(res)
+        this.recurringEvents.forEach(event =>{
+          for(let i=0; i < 365/event.frequency; i ++){
+            this.events.push({
+            start : addDays(event.start, i * event.frequency),
+            end: addDays(event.end, i * event.frequency),
+            title: event.title,
+            color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
+            })
+          }
+        })
+      }).catch((err) => {
+        console.log(err)
+      })       
+    }
+  
   }
 
 

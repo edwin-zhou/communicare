@@ -57,5 +57,10 @@
   </form>
 </mat-card>
 
-<app-login-page *ngIf='!session'></app-login-page>
+<!-- if logged out -->
+<div class="container" *ngIf='!session'>
+  <app-login-page>
+
+  </app-login-page>
+</div>
 
