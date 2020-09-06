@@ -8,15 +8,15 @@ import { task } from './../../models/task.model'
   styleUrls: ['./marketplace.component.scss']
 })
 export class MarketplaceComponent implements OnInit {
+  tasks: task[] = []
   cols: number = 5 
+  
   constructor(public help: HelpService) { }
 
   ngOnInit(): void {
-
+    this.getTasks()
   }
 
-  list: any[] = [1 , 2, 34, 5, 65, 235 ,654 ,43]
-  tasks = []
 
   giveHelp(task: task) {
     this.help.accept(task).then((res) => {
@@ -27,7 +27,7 @@ export class MarketplaceComponent implements OnInit {
   }
 
   getTasks() {
-    this.help.getTasks().then((res: []) => {
+    this.help.getTasks().then((res: task[]) => {
       this.tasks = res
     })
   }

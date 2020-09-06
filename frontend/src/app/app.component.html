@@ -4,7 +4,7 @@
     <button mat-button class="col-auto" style="cursor: pointer;" routerLink='/help-someone'>Help Someone</button>
     <button mat-button class="col-auto" style="cursor: pointer;" routerLink='get-help'>Get Help</button>
     <button mat-button class="col-auto mr-auto" style="cursor: pointer;" routerLink='schedule'>My Schedule</button>
-    <span class="col-auto">
+    <span class="col-auto" *ngIf='session'>
         <button mat-raised-button [matMenuTriggerFor]="menu" color='primary'>Hi, SIMP Ady</button>
         <mat-menu #menu="matMenu">
             <span mat-menu-item><app-logout></app-logout></span>
@@ -13,7 +13,15 @@
 </mat-toolbar>
 
 <div id="main" style="height: 100%;">
-    <router-outlet></router-outlet>
+    <!-- if logged out -->
+    <div class="container" *ngIf='!session'>
+        <app-login-page>
+
+        </app-login-page>
+    </div>
+
+    <!-- else -->
+    <router-outlet *ngIf='session'></router-outlet>
 </div>
 
 <!-- footer -->

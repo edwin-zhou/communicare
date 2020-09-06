@@ -1,7 +1,7 @@
 <mat-grid-list
     class="container"
     cols='5'>
-    <mat-grid-tile *ngFor='let icon of list'>
+    <mat-grid-tile *ngFor='let task of tasks'>
         <mat-card>
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -9,7 +9,7 @@
                 <mat-card-subtitle>*time*</mat-card-subtitle>
               </mat-card-header>
             <mat-card-content>
-                {{icon}}
+                {{task.title}}
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button class="text-success">Help</button>
@@ -22,4 +22,4 @@
     <button (click)="giveHelp(task)">{{task.title}}</button>
 </div>
 
-<button (click)="getTasks()">xd</button>
+<button (click)="getTasks()" mat-button><mat-icon>refresh</mat-icon></button>
