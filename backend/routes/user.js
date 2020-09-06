@@ -24,13 +24,14 @@ router.get('/schedule', (req, result, next) => {
 
 router.post('/login', (req, result, next) => {
     User.find({$and: [{username: req.body.username}, {password: req.body.password}]}, (err, res) => {
-      if (err) {
+      if (res[0]) {
+        result.status(200).json({
+          username: res.username
+        })
+      }
+      else {
         result.status(500).json({
           message: err
-        })
-      } else {
-        result.status(200).json({
-          username: res[0].username
         })
       }
     })

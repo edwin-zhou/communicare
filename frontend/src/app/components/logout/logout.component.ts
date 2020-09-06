@@ -16,5 +16,8 @@ export class LogoutComponent implements OnInit {
   /** calls SessionService to clear local & session storage */
   onLogout() {
     this.SessionService
+    localStorage.removeItem('username')
+    sessionStorage.removeItem('username')
+    location.reload()
   }
 }

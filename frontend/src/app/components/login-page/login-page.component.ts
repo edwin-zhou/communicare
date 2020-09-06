@@ -32,20 +32,20 @@ export class LoginPageComponent implements OnInit {
       return;
     }
     let credentials = {
-        username: this.loginForm.get('username').value,
-        password: this.loginForm.get('password').value
+      username: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
     }
     this.loginPageService.login(credentials).subscribe(userData=>{
-      if (userData){
+      if (userData) {
         sessionStorage.setItem('username', userData.username)
         localStorage.setItem('username', userData.username)
         this.sessionService.session()
-        this.router.navigate(['/welcome-page'])
+        location.reload()
       }
       else{
+        this.loginForm.reset();
         return;
       }
     })
-    this.loginForm.reset();
   }
 }
