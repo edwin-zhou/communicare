@@ -1,3 +1,4 @@
+import { SessionService } from './../../services/session.service';
 import { CreateTaskService } from './../../services/create-task.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -10,13 +11,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent implements OnInit {
-    //tags
-    visible = true;
-    selectable = true;
-    removable = true;
-    addOnBlur = true;
-    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-    tags: string[] = [];
+  session: boolean = false
+  //tags
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  tags: string[] = [];
   form: FormGroup
   //time
 selectedValue: string;
@@ -28,7 +30,10 @@ frequencies: any[] = [
 ];
 
   constructor(private createTaskService: CreateTaskService,
-    private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private SessionService: SessionService) {
+    this.session = this.SessionService.session()
+  }
 
 
 

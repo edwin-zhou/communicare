@@ -17,7 +17,11 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private sessionService: SessionService,
               private router:Router,
-              private loginPageService: LoginPageService) { }
+              private loginPageService: LoginPageService) {
+    if (this.sessionService.session()) {
+      this.router.navigate(['welcome-page'])
+    }
+  }
 
   ngOnInit() {
       this.loginForm = new FormGroup({

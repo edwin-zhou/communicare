@@ -1,10 +1,16 @@
-app-welcome-page {
-    position: fixed;
-    top: 25%;
-    left: 25%;
-    right: 25%;
-}
+// app-welcome-page {
+//     position: fixed;
+//     top: 25%;
+//     left: 25%;
+//     right: 25%;
+// }
 
 .logo:focus {
     outline: none;
+}
+
+#main {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: deepskyblue;
 }

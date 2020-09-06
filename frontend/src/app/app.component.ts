@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { SessionService } from './services/session.service';
 import { Component } from '@angular/core';
 
@@ -9,8 +10,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'frontend';
   session: boolean = false
+  username: string = ''
 
-  constructor(private SessionService: SessionService) {
+  constructor(private SessionService: SessionService,
+              private Router: Router) {
     this.session = this.SessionService.session()
+    if (this.session) {
+      this.username = sessionStorage.getItem('username')
+    }
   }
 }
