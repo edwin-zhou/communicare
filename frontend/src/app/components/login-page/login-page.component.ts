@@ -43,6 +43,7 @@ export class LoginPageComponent implements OnInit {
       if (userData) {
         sessionStorage.setItem('username', userData.username)
         localStorage.setItem('username', userData.username)
+        this.sessionService.onLoginTags(userData.category)
         this.sessionService.session()
         location.reload()
       }

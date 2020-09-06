@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class SessionService {
+    userTags: String[] = []
+
     // observable for login state
     private _sessionState: BehaviorSubject<boolean> = new BehaviorSubject(false)
     public sessionState: Observable<boolean> = this._sessionState.asObservable()
@@ -20,5 +22,10 @@ export class SessionService {
       this._sessionState.next(false)
       return false
     }
+  }
+
+  /** gets tags of user on login */
+  onLoginTags(arr: String[]) {
+    this.userTags = arr
   }
 }
