@@ -67,7 +67,7 @@ export class RegistrationPageComponent implements OnInit {
         this.sessionService.onLoginTags(userData.user.category)
       }
     )
-    location.reload()
+    this.router.navigate(['/welcome-page'])
   }
   checkPasswordValidity: boolean = false
   checkPasswordsMatch(control: FormControl) {
