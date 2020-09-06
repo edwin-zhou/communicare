@@ -18,31 +18,47 @@ export class CreateTaskComponent implements OnInit {
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
     tags: string[] = [];
   form: FormGroup
+  //time
+selectedValue: string;
+frequencies: any[] = [
+  {value: '365', viewValue: 'once'},
+  {value: '1', viewValue: 'daily'},
+  {value: '7', viewValue: 'weekly'},
+  {value: '30', viewValue: 'monthly'},
+];
 
   constructor(private createTaskService: CreateTaskService,
     private _snackBar: MatSnackBar) { }
+
+
+
 
   ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       description: new FormControl(null, { validators: [Validators.required] }),
       qualifications: new FormControl(null, { validators: [] }),
+      time: new FormControl(null, { validators: [Validators.required,Validators.minLength(2)] }),
+      frequency: new FormControl(null, { validators: [Validators.required] }),
     })
   }
 
   onSaveTask() {
+    console.log(this.form)
     if (this.form.invalid) {
       return;
     }
     let newTask = {
-      start: new Date(),
-      end: new Date(),
+      start: this.form.value.time[0],
+      end: this.form.value.time[1],
+      frequency: +this.form.value.frequency,
       title: this.form.value.title,
       description: this.form.value.description,
       caregiver: "",
       customer: localStorage.getItem('username'),
-      qualifications: ["xd"],
+      qualifications: this.form.value.qualifications,
     }
+    console.log(newTask)
     this.createTaskService.createTask(newTask)
     this._snackBar.open('help request submitted!','thanks!',{
       duration: 5000

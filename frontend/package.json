@@ -30,6 +30,7 @@
     "date-fns": "^2.16.1",
     "flatpickr": "^4.6.6",
     "moment": "^2.26.0",
+    "ng-pick-datetime": "^7.0.0",
     "rrule": "^2.6.5",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",

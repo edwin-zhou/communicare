@@ -55,6 +55,7 @@ import * as moment from 'moment';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);
@@ -123,6 +124,8 @@ export function momentAdapterFactory() {
     CommonModule,
     FlatpickrModule.forRoot(),
     FormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory }),
   ],
   providers: [],
