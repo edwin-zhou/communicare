@@ -27,5 +27,6 @@ export class SessionService {
   /** gets tags of user on login */
   onLoginTags(arr: String[]) {
     this.userTags = arr
+    console.log(this.userTags)
   }
 }

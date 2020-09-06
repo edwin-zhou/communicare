@@ -39,11 +39,13 @@ export class MarketplaceComponent implements OnInit {
 
   /** check if user is qualified to view task */
   checkTag(task: task): boolean {
-    if (task.qualifications.length >= 1 && !this.SessionService.userTags.length) {
-      console.log('fa')
+    console.log(this.SessionService.userTags)
+    console.log()
+    if (task.qualifications.length >= 1 && this.SessionService.userTags.length == 0) {
       return false
     } else if (task.qualifications) {
       for (let qual of task.qualifications) {
+
         if (!this.SessionService.userTags.includes(qual)) {
           return false
         }

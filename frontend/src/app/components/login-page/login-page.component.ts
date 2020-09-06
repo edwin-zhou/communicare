@@ -43,9 +43,9 @@ export class LoginPageComponent implements OnInit {
       if (userData) {
         sessionStorage.setItem('username', userData.username)
         localStorage.setItem('username', userData.username)
-        this.sessionService.onLoginTags(userData.category)
+        this.sessionService.onLoginTags(userData.obj.qualifications)
         this.sessionService.session()
-        location.reload()
+        this.router.navigate(['welcome-page'])
       }
       else{
         this.loginForm.reset();

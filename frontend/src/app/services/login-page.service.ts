@@ -22,6 +22,7 @@ export class LoginPageService {
       caregivers: []
       customers: []
       schedule: []
+      obj?: any
     }>(this.url, credentials);
   }
 
