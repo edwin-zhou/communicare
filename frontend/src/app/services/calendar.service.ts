@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CalendarService {
-  url = environment.mainURL + "/api/user/schedule"
+  url = environment.mainURL + "/api/tasks/searchTasks"
 
   constructor(private http: HttpClient) { }
 
@@ -19,4 +19,15 @@ export class CalendarService {
       })
     })
   }
+  getTasks(username: string) {
+    return new Promise((resolve, reject) => {
+      this.http
+      .post<{message: string; data: any}>(this.url, {'username': username}).subscribe((res) => {
+        resolve(res)
+      }, (err) => {
+        reject(err)
+      })
+    })
+  }
+
 }

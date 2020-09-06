@@ -61,7 +61,7 @@ export class CalendarComponent implements OnInit{
 
   ngOnInit(){
     if (this.SessionService.session()) {
-      this.calendarService.getSchedule().then((res: any) => {
+      this.calendarService.getTasks(sessionStorage.getItem("username")).then((res: any) => {
         this.recurringEvents = res
         console.log(res)
         this.recurringEvents.forEach(event =>{
