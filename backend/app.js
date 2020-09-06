@@ -25,9 +25,11 @@ app.use("/api/task", taskRoute)
 app.use("/api/user", userRoute)
 
 // serve angular
-// app.use('/:param',(req, res, next) => {
-//   res.sendFile(path.resolve(__dirname, '..', 'website', 'dist', 'website', req.params.param))
-// })
+app.use('/', express.static(path.resolve(__dirname, '..', 'frontend', 'dist', 'frontend')))
+
+app.use((req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'frontend', 'index.html'))
+})
 
 // set database URL:
 const dbURL = 'mongodb+srv://admin:admin@communicare.s0a4z.azure.mongodb.net/<communicare>?retryWrites=true&w=majority'
