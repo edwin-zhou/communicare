@@ -9,14 +9,14 @@ router.post('/delete', (req, result, next) => {
 })
 
 router.post('/schedule', (req, result, next) => {
-    User.find({username: req.query.username}, (err, res) => {
-        if (err) {
+    User.find({username: req.body.username}, (err, res) => {
+        if (res[0]) {
+          console.log(res)
+          result.status(200).json(res[0].schedule)
+        } else {
           result.status(500).json({
             message: err
           })
-        } else {
-          console.log(res)
-          result.status(200).json(res[0].schedule)
         }
     })
 })

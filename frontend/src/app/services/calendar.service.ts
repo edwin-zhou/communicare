@@ -11,8 +11,7 @@ export class CalendarService {
 
   getSchedule() {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.url, {}).subscribe((res) => {
-        console.log(res)
+      this.http.post<any>(this.url, {username: localStorage.getItem('username')}).subscribe((res) => {
         resolve(res)
       }, (err) => {
         reject(err)
