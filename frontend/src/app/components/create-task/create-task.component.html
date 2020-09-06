@@ -1,31 +1,27 @@
-<p>hello</p>
-<form [formGroup]="form" (submit)="onSaveTask()">
+<mat-card>
+<form [formGroup]="form" (submit)="onSaveTask()" class="center">
+<mat-card-title>Ask for help</mat-card-title>
+<mat-card-content>
 
-    <mat-form-field >
-      <mat-label>Task Title</mat-label>
-      <input matInput formControlName="title">
-    </mat-form-field>
+      <mat-form-field class="row container">
+        <mat-label>Task Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
 
-    <mat-form-field >
-      <mat-label>Task Description</mat-label>
-      <input matInput formControlName="description">
-    </mat-form-field>
+      <mat-form-field class="row container">
+        <mat-label>Task Description</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
 
-    <mat-form-field >
-      <mat-label>Task Tags</mat-label>
-      <input matInput formControlName="tags">
-    </mat-form-field>
-
-
-    <!-- categories -->
-    <mat-form-field >
+   <!-- categories -->
+    <mat-form-field class="row container">
       <mat-chip-list #chipList aria-label="tag selection">
         <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
                   [removable]="removable" (removed)="removeTag(tag)">
           {{tag}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
-        <input placeholder="add a tag..."
+        <input placeholder="required qualifications, leave blank if unecessary"
           [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           [matChipInputAddOnBlur]="addOnBlur"
@@ -34,5 +30,10 @@
     </mat-form-field>
 
 
-    <button mat-raised-button color="accent" type="submit">Get Help!</button>
-</form>
+    <button mat-raised-button class="row container" color="accent" type="submit">Create a task</button>
+  </mat-card-content>
+  </form>
+</mat-card>
+
+
+
