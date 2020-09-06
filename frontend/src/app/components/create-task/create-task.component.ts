@@ -1,6 +1,7 @@
 import { CreateTaskService } from './../../services/create-task.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-create-task',
@@ -8,6 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent implements OnInit {
+    //tags
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    tags: string[] = [];
   form: FormGroup
 
   constructor(private createTaskService: CreateTaskService) { }
@@ -35,5 +43,32 @@ export class CreateTaskComponent implements OnInit {
     }
     this.createTaskService.createTask(newTask)
     this.form.reset();
+  }
+
+  addTag(event): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add a tag
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    this.form.patchValue({ tags: this.tags });
+    this.form.get("qualifications").updateValueAndValidity();
+
+  }
+
+  removeTag(tag): void {
+    const index = this.tags.indexOf(tag);
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+    this.form.patchValue({ tags: this.tags });
+    this.form.get("qualifications").updateValueAndValidity();
   }
 }
