@@ -1,6 +1,9 @@
 <!-- menu bar -->
-<mat-toolbar color='primary' class="row" style="position: sticky; top: 0; z-index: 1; margin-bottom: 5%;">
-    <span class="col mr-auto logo" style="cursor: pointer;" routerLink='/'>Communicare</span>
+<mat-toolbar color='primary' class="container-fluid row-12" style="position: sticky; top: 0; z-index: 2">
+    <span class="col-auto logo" style="cursor: pointer;" routerLink='/'>Communicare</span>
+    <button mat-button class="col-auto" style="cursor: pointer;" routerLink='/help-someone'>Help Someone</button>
+    <button mat-button class="col-auto" style="cursor: pointer;" routerLink='get-help'>Get Help</button>
+    <button mat-button class="col-auto mr-auto" style="cursor: pointer;" routerLink='schedule'>My Schedule</button>
     <span class="col-auto">
         <button mat-raised-button [matMenuTriggerFor]="menu" color='primary'>Hi, SIMP Ady</button>
         <mat-menu #menu="matMenu">
@@ -9,14 +12,12 @@
     </span>
 </mat-toolbar>
 
-<app-create-task></app-create-task>
-
-<app-marketplace></app-marketplace>
-
-<router-outlet></router-outlet>
+<div id="main" style="height: 100%;">
+    <router-outlet></router-outlet>
+</div>
 
 <!-- footer -->
-<mat-toolbar color='primary' class="container-fluid row" style="bottom: 0; margin-top: 5%;">
+<mat-toolbar color='primary' class="container-fluid row-12" style="position: fixed; bottom: 0; z-index: 2;">
     <span>About</span>
     <span>
         <mat-icon>call</mat-icon>
