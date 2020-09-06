@@ -52,7 +52,11 @@ export class CalendarComponent implements OnInit{
   events: CalendarEvent[] = []
   activeDayIsOpen: boolean = true;
   
-  constructor(private modal: NgbModal, private calendarService: CalendarService) {}
+  constructor(private modal: NgbModal,
+              private calendarService: CalendarService,
+              private SessionService: SessionService) {
+    this.session = this.SessionService.session()
+  }
 
   ngOnInit(){
     this.calendarService.getSchedule().then((res: any) => {
