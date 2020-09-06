@@ -1,0 +1,16 @@
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{data.title}}</mat-card-title>
+    <mat-card-subtitle>
+      recipient:  {{data.customer}}
+      caregiver:  {{data.caregiver}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      {{data.description}}
+  </mat-card-content>
+  <mat-card>  repeats every {{data.frequency}} days</mat-card>
+  <mat-card>  starts: {{data.start.toString() | slice:0:25}}</mat-card>
+  <mat-card>  ends: {{data.end.toString() | slice:0:25}}</mat-card>
+</mat-card>

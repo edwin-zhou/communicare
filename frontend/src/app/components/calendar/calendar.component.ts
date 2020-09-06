@@ -3,9 +3,11 @@ import { Component,ChangeDetectionStrategy,ViewChild,TemplateRef, ChangeDetector
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours} from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarView, } from 'angular-calendar';
+import { CalendarEvent as any, CalendarView, } from 'angular-calendar';
 import { SessionService } from 'src/app/services/session.service';
 import parseISO from 'date-fns/parseISO'
+import { MatDialog } from '@angular/material/dialog';
+import { ViewTaskComponent } from '../view-task/view-task.component';
 
 const colors: any = {
   customer: {
@@ -36,7 +38,7 @@ export class CalendarComponent implements OnInit{
 
   modalData: {
     action: string;
-    event: CalendarEvent;
+    event: any;
   };
 
   refresh: Subject<any> = new Subject();
@@ -50,10 +52,10 @@ export class CalendarComponent implements OnInit{
       frequency: 7
     },
   ];
-  events: CalendarEvent[] = []
+  events: any[] = []
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,
+  constructor(public dialog: MatDialog,
               private calendarService: CalendarService,
               private SessionService: SessionService) {
     this.session = this.SessionService.session()
@@ -63,15 +65,19 @@ export class CalendarComponent implements OnInit{
     if (this.SessionService.session()) {
       this.calendarService.getTasks(sessionStorage.getItem("username")).then((res: any) => {
         this.recurringEvents = res
-        console.log(res)
         this.recurringEvents.forEach(event =>{
           for(let i=0; i < 365/event.frequency; i ++){
             event.start = new Date()
             event.end = new Date()
             this.events.push({
+            title: event.title,
+            description: event.description,
+            qualifications: event.qualifications,
             start :  addDays(event.start, i * event.frequency),
             end: addDays(event.end, i * event.frequency),
-            title: event.title,
+            frequency: event.frequency,
+            caregiver: event.caregiver,
+            customer: event.customer,
             color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
             })
           }
@@ -81,11 +87,10 @@ export class CalendarComponent implements OnInit{
         console.log(err)
       })
     }
-
   }
 
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: any[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -99,10 +104,12 @@ export class CalendarComponent implements OnInit{
     }
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+  handleEvent(event): void {
+    this.dialog.open(ViewTaskComponent, {data:event});
+
   }
+
+
   setView(view: CalendarView) {
     this.view = view;
   }

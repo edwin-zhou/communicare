@@ -56,7 +56,7 @@ import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
+import { ViewTaskComponent } from './components/view-task/view-task.component';
 export function momentAdapterFactory() {
   return adapterFactory(moment);
 };
@@ -70,7 +70,8 @@ export function momentAdapterFactory() {
     LogoutComponent,
     MarketplaceComponent,
     CalendarComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    ViewTaskComponent,
   ],
   imports: [
     BrowserModule,
