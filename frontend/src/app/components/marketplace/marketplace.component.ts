@@ -26,10 +26,10 @@ export class MarketplaceComponent implements OnInit {
   giveHelp(task: task) {
     this.help.accept(task).then((res) => {
       console.log(res)
+      this.getTasks()
     }).catch((err) => {
       console.log(err)
     })
-    this.getTasks()
   }
 
   getTasks() {
