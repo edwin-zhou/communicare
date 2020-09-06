@@ -1,59 +1,59 @@
-<mat-card>
-<form [formGroup]="form" (submit)="onSaveTask()" class="center">
-<mat-card-title>Ask for help</mat-card-title>
-<mat-card-content>
+<mat-card *ngIf='session'>
+  <form [formGroup]="form" (submit)="onSaveTask()" class="center">
+    <mat-card-title>Ask for help</mat-card-title>
+    <mat-card-content>
 
+          <mat-form-field class="row container">
+            <mat-label>Task Title</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+
+          <mat-form-field class="row container">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+
+          <mat-form-field class="row container">
+            <mat-label>Task Frequency</mat-label>
+            <mat-select formControlName="frequency">
+              <mat-option *ngFor="let frequency of frequencies" [value]="frequency.value">
+                {{frequency.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+
+
+        <label>
+          Date Time Range:
+          <input [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"
+                [selectMode]="'range'" formControlName="time">
+          <owl-date-time #dt10></owl-date-time>
+        </label>
+
+      <!-- categories -->
       <mat-form-field class="row container">
-        <mat-label>Task Title</mat-label>
-        <input matInput formControlName="title">
+        <mat-chip-list #chipList aria-label="tag selection">
+          <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                    [removable]="removable" (removed)="removeTag(tag)">
+            {{tag}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="required qualifications, leave blank if unecessary"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="addTag($event)">
+        </mat-chip-list>
       </mat-form-field>
 
-      <mat-form-field class="row container">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description">
-      </mat-form-field>
-
-      <mat-form-field class="row container">
-        <mat-label>Task Frequency</mat-label>
-        <mat-select formControlName="frequency">
-          <mat-option *ngFor="let frequency of frequencies" [value]="frequency.value">
-            {{frequency.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
 
 
 
-
-
-    <label>
-      Date Time Range:
-      <input [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"
-             [selectMode]="'range'" formControlName="time">
-      <owl-date-time #dt10></owl-date-time>
-    </label>
-
-   <!-- categories -->
-   <mat-form-field class="row container">
-    <mat-chip-list #chipList aria-label="tag selection">
-      <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
-                [removable]="removable" (removed)="removeTag(tag)">
-        {{tag}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input placeholder="required qualifications, leave blank if unecessary"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="addOnBlur"
-        (matChipInputTokenEnd)="addTag($event)">
-    </mat-chip-list>
-  </mat-form-field>
-
-
-
-
-    <button mat-raised-button class="row container" color="accent" type="submit">Create a task</button>
-  </mat-card-content>
+        <button mat-raised-button class="row container" color="accent" type="submit">Create a task</button>
+      </mat-card-content>
   </form>
 </mat-card>
 

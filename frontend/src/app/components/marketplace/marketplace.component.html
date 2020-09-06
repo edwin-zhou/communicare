@@ -14,6 +14,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     {{task.title}}
+                    <span><p *ngFor='let qual of task.qualifications'>{{qual}}</p></span>
                 </mat-card-content>
                 <mat-card-actions>
                     <button mat-raised-button class="text-success" (click)="giveHelp(task)">Help</button>

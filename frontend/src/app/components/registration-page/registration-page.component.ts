@@ -66,7 +66,7 @@ export class RegistrationPageComponent implements OnInit {
         localStorage.setItem('username', userData.user.username)
       }
     )
-    this.router.navigate(['/welcome-page'])
+    location.reload()
   }
   checkPasswordValidity: boolean = false
   checkPasswordsMatch(control: FormControl) {
