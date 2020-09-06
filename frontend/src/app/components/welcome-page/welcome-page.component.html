@@ -1,20 +1,29 @@
+<!-- if logged out -->
+<div class="container" *ngIf='!session'>
+    <app-login-page>
+
+    </app-login-page>
+</div>
+
 <!-- if logged in -->
-<div class="container">
-
-    <mat-card class="container-fluid">
-        <mat-card-title>
-            <button mat-button (click)='expand()'>
-                <mat-icon>fullscreen</mat-icon>
-            </button>
-        </mat-card-title>
-        <mat-card-content class="text-wrap">
-            <app-marketplace></app-marketplace>
-        </mat-card-content>
+<div class="container" *ngIf='session'>
+    <mat-card>
+        <button>Help</button>
     </mat-card>
-
+    
     <br>
     <hr>
     <br>
 
     <button mat-raised-button color='primary'>Get Help</button>
+    
+    <br>
+    <hr>
+    <br>
+
+    <mat-card>
+        <mat-card-content>
+            <span>Schedule</span>
+        </mat-card-content>
+    </mat-card>
 </div>

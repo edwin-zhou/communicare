@@ -1,3 +1,4 @@
+import { MarketplaceComponent } from './components/marketplace/marketplace.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: "welcome-page", component: WelcomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
+  { path: 'help', component: MarketplaceComponent},
   { path: '', redirectTo: 'welcome-page', pathMatch: 'full'}
 ];
 
@@ -17,4 +19,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
- }
+}

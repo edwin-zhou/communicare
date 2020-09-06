@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { SessionService } from './../../services/session.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private SessionService: SessionService) { }
+  constructor(private SessionService: SessionService,
+              private Router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +20,7 @@ export class LogoutComponent implements OnInit {
     this.SessionService
     localStorage.removeItem('username')
     sessionStorage.removeItem('username')
+    this.Router.navigate(['welcome-page'])
     location.reload()
   }
 }
