@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit{
   ];
   events: CalendarEvent[] = []
   activeDayIsOpen: boolean = true;
-  
+
   constructor(private modal: NgbModal,
               private calendarService: CalendarService,
               private SessionService: SessionService) {
@@ -66,8 +66,8 @@ export class CalendarComponent implements OnInit{
         this.recurringEvents.forEach(event =>{
           for(let i=0; i < 365/event.frequency; i ++){
             this.events.push({
-            start : addDays(event.start, i * event.frequency),
-            end: addDays(event.end, i * event.frequency),
+            start : addDays(event.start, Math.fround(i * event.frequency)),
+            end: addDays(event.end, Math.fround(i * event.frequency)),
             title: event.title,
             color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
             })
@@ -75,9 +75,9 @@ export class CalendarComponent implements OnInit{
         })
       }).catch((err) => {
         console.log(err)
-      })       
+      })
     }
-  
+
   }
 
 
