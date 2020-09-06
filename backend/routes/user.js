@@ -26,7 +26,7 @@ router.post('/login', (req, result, next) => {
     User.find({$and: [{username: req.body.username}, {password: req.body.password}]}, (err, res) => {
       if (res[0]) {
         result.status(200).json({
-          username: res.username
+          username: req.body.username
         })
       }
       else {
