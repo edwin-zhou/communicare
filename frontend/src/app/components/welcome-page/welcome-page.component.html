@@ -1,3 +1,10 @@
+<!-- if logged out -->
+<div class="container" *ngIf='!session'>
+    <app-login-page>
+
+    </app-login-page>
+</div>
+
 <!-- if logged in -->
 <div class="container" *ngIf='session'>
     <mat-card>

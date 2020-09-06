@@ -1,25 +1,23 @@
-<mat-grid-list
-    class="container"
-    cols='5'>
-    <mat-grid-tile *ngFor='let task of tasks'>
-        <mat-card>
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>*username*</mat-card-title>
-                <mat-card-subtitle>*time*</mat-card-subtitle>
-              </mat-card-header>
-            <mat-card-content>
-                {{task.title}}
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button class="text-success">Help</button>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
-
-<div *ngFor="let task of tasks">
-    <button (click)="giveHelp(task)">{{task.title}}</button>
+<div *ngIf='session'>
+    <mat-grid-list
+        class="container"
+        cols='5'>
+        <mat-grid-tile *ngFor='let task of tasks'>
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{task.customer}}</mat-card-title>
+                    <mat-card-subtitle>{{task.start | date}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    {{task.title}}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button class="text-success" (click)="giveHelp(task)">Help</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
 
-<button (click)="getTasks()" mat-button><mat-icon>refresh</mat-icon></button>
+<app-login-page *ngIf='!session'></app-login-page>

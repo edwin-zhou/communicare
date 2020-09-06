@@ -1,3 +1,4 @@
+import { SessionService } from './../../services/session.service';
 import { HelpService } from './../../services/help.service';
 import { Component, OnInit } from '@angular/core';
 import { task } from './../../models/task.model'
@@ -10,8 +11,12 @@ import { task } from './../../models/task.model'
 export class MarketplaceComponent implements OnInit {
   tasks: task[] = []
   cols: number = 5 
-  
-  constructor(public help: HelpService) { }
+  session: boolean = false
+
+  constructor(public help: HelpService,
+              private SessionService: SessionService) {
+    this.session = this.SessionService.session()
+  }
 
   ngOnInit(): void {
     this.getTasks()
@@ -24,6 +29,7 @@ export class MarketplaceComponent implements OnInit {
     }).catch((err) => {
       console.log(err)
     })
+    this.getTasks()
   }
 
   getTasks() {

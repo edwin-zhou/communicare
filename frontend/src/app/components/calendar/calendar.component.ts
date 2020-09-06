@@ -22,6 +22,7 @@ const colors: any = {
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit{
+  session: boolean = false
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Day;
@@ -65,7 +66,10 @@ export class CalendarComponent implements OnInit{
   }
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,
+              private SessionService: SessionService) {
+    this.session = this.SessionService.session()
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
