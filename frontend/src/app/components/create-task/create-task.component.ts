@@ -2,6 +2,7 @@ import { CreateTaskService } from './../../services/create-task.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-task',
@@ -18,13 +19,14 @@ export class CreateTaskComponent implements OnInit {
     tags: string[] = [];
   form: FormGroup
 
-  constructor(private createTaskService: CreateTaskService) { }
+  constructor(private createTaskService: CreateTaskService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       description: new FormControl(null, { validators: [Validators.required] }),
-      tags: new FormControl(null, { validators: [Validators.required] }),
+      qualifications: new FormControl(null, { validators: [] }),
     })
   }
 
@@ -42,6 +44,9 @@ export class CreateTaskComponent implements OnInit {
       qualifications: ["xd"],
     }
     this.createTaskService.createTask(newTask)
+    this._snackBar.open('help request submitted!','thanks!',{
+      duration: 5000
+    })
     this.form.reset();
   }
 
