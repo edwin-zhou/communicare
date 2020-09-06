@@ -2,7 +2,10 @@
     <mat-grid-list
         class="container"
         cols='5'>
-        <mat-grid-tile *ngFor='let task of tasks'>
+        <span *ngIf='!tasks.length' class="row">
+            <button mat-raised-button class='text-success'>Nothing So Far...</button>
+        </span>
+        <mat-grid-tile *ngFor='let task of tasks, let first = first'>
             <mat-card>
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
