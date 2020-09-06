@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { task } from '../models/task.model';
@@ -6,7 +7,7 @@ import { task } from '../models/task.model';
   providedIn: 'root'
 })
 export class CreateTaskService {
-  url = "http://localhost:3000/api/task"
+  url = environment.mainURL + "/api/task"
 
   constructor(private http: HttpClient) { }
 

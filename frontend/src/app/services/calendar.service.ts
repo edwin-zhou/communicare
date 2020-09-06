@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -5,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CalendarService {
-  url = "http://localhost:3000/api/user/schedule"
+  url = environment.mainURL + "/api/user/schedule"
 
   constructor(private http: HttpClient) { }
 

@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { userModel } from '../models/user.model';
@@ -6,7 +7,7 @@ import { userModel } from '../models/user.model';
   providedIn: 'root'
 })
 export class RegistrationPageService {
-  url = "http://localhost:3000/api/user"
+  url = environment.mainURL +  "/api/user"
   constructor(
     private http: HttpClient
   ) { }

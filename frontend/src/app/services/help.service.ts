@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { task } from './../models/task.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HelpService {
-  url = "http://localhost:3000/api/task/"
+  url = environment.mainURL + "/api/task/"
 
   constructor(private http: HttpClient) { }
 
