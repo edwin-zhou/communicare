@@ -11,8 +11,8 @@ However, they can range up to professional help.
 (e.g. medical checkups, physical therapy, carpentry, installing rails)
 
 # How to test
-run 'npm i' in the frontend folder 
-run 'ng serve' in the same folder
+run 'npm i' in the frontend folder, 
+run 'ng serve' in the same folder,
 go to localhost:4200 to view the website
 
 or 
