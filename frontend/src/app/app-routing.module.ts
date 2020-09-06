@@ -1,3 +1,4 @@
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { MarketplaceComponent } from './components/marketplace/marketplace.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegistrationPageComponent },
   { path: 'help-someone', component: MarketplaceComponent},
   { path: 'get-help', component: CreateTaskComponent},
+  { path: 'schedule', component: CalendarComponent},
   { path: '', redirectTo: 'welcome-page', pathMatch: 'full'}
 ];
 
