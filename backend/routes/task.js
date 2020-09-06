@@ -18,6 +18,23 @@ router.post('/help', (req, result, next) => {
     })
 })
 
+router.post('/searchTasks/:username',(req,result,next)=>{
+    console.log('woo')
+    Task.find({$or: [{caregiver:req.params.username}, {customer: req.params.username}]}, (err, res) => {
+        if (err) {
+          console.log('xd')
+            result.status(500).json({
+                message: err
+            })
+        } else {
+            result.status(200).json(res)
+        }
+    })
+})
+
+
+
+
 router.post('', (req, result, next) => {
     console.log('xd')
     const newTask = new Task({start: req.body.start, 

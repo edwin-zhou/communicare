@@ -11,7 +11,7 @@ router.post('/delete', (req, result, next) => {
 router.post('/schedule', (req, result, next) => {
     User.find({username: req.body.username}, (err, res) => {
         if (res[0]) {
-          console.log(res)
+          console.log(res+ 'boom')
           result.status(200).json(res[0].schedule)
         } else {
           result.status(500).json({
