@@ -1,6 +1,9 @@
 <!-- menu bar -->
-<mat-toolbar color='primary' class="row" style="position: sticky; top: 0; z-index: 1; margin-bottom: 5%;">
-    <span class="col mr-auto logo" style="cursor: pointer;" routerLink='/'>Communicare</span>
+<mat-toolbar color='primary' class="container-fluid row-12" style="position: sticky; top: 0; z-index: 2">
+    <span class="col-auto logo" style="cursor: pointer;" routerLink='/'>Communicare</span>
+    <span class="col-auto"><small>Help Someone</small></span>
+    <span class="col-auto"><small>Get Help</small></span>
+    <span class="col-auto mr-auto"><small>My Schedule</small></span>
     <span class="col-auto">
         <button mat-raised-button [matMenuTriggerFor]="menu" color='primary'>Hi, SIMP Ady</button>
         <mat-menu #menu="matMenu">
@@ -9,12 +12,13 @@
     </span>
 </mat-toolbar>
 
-<app-create-task></app-create-task>
+<div id="main">
+    <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
 
 <!-- footer -->
-<mat-toolbar color='primary' class="container-fluid row" style="bottom: 0; margin-top: 5%;">
+<mat-toolbar color='primary' class="container-fluid row-12" style="bottom: 0;">
     <span>About</span>
     <span>
         <mat-icon>call</mat-icon>

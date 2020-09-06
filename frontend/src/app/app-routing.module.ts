@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: "welcome-page", component: WelcomePageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegistrationPageComponent },
-  { path: 'get-help', component: MarketplaceComponent},
-  { path: 'help-someone', component: CreateTaskComponent},
+  { path: 'help-someone', component: MarketplaceComponent},
+  { path: 'get-help', component: CreateTaskComponent},
   { path: '', redirectTo: 'welcome-page', pathMatch: 'full'}
 ];
 
