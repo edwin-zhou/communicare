@@ -66,8 +66,10 @@ export class CalendarComponent implements OnInit{
         console.log(res)
         this.recurringEvents.forEach(event =>{
           for(let i=0; i < 365/event.frequency; i ++){
+            event.start = new Date()
+            event.end = new Date()
             this.events.push({
-            start : addDays(event.start, i * event.frequency),
+            start :  addDays(event.start, i * event.frequency),
             end: addDays(event.end, i * event.frequency),
             title: event.title,
             color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
