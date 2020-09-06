@@ -58,12 +58,13 @@ export class RegistrationPageComponent implements OnInit {
     let data : {username: string, password: string, qualifications: string[]} = {
       username: this.registrationForm.get('username').value,
       password: this.registrationForm.get('passwords.password').value,
-      qualifications: this.registrationForm.get('qualifications').value,
+      qualifications: this.tags,
     }
-    this.registrationPageService.register(data).subscribe(
-      userData=>{
+    this.registrationPageService.register(data)
+    .subscribe((userData) => {
         sessionStorage.setItem('username', userData.user.username)
         localStorage.setItem('username', userData.user.username)
+        this.sessionService.onLoginTags(userData.user.category)
       }
     )
     location.reload()

@@ -1,26 +1,31 @@
 <div *ngIf='session'>
     <mat-grid-list
-        class="container"
-        cols='5'>
+        class="container-fluid"
+        cols='4'>
         <span *ngIf='!tasks.length' class="row">
             <button mat-raised-button class='text-success'>Nothing So Far...</button>
         </span>
-        <mat-grid-tile *ngFor='let task of tasks, let first = first'>
-            <mat-card>
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{task.customer}}</mat-card-title>
-                    <mat-card-subtitle>{{task.start | date}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    {{task.title}}
-                    <span><p *ngFor='let qual of task.qualifications'>{{qual}}</p></span>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-raised-button class="text-success" (click)="giveHelp(task)">Help</button>
-                </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
+        <div *ngFor='let task of tasks'>
+            <mat-grid-tile *ngIf='checkTag(task)'>
+                <mat-card style="min-height: 250px; min-width: 250px;">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{task.customer}}</mat-card-title>
+                        <mat-card-subtitle>{{task.start | date}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><b>{{task.title}}</b><br>{{task.description}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-chip-list class="row d-inline">
+                            <button mat-raised-button class="text-success col-auto " (click)="giveHelp(task)">Help</button>
+                            <mat-chip *ngFor='let qual of task.qualifications'>{{qual}}</mat-chip>
+                        </mat-chip-list>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>           
+        </div>
+
     </mat-grid-list>
 </div>
 

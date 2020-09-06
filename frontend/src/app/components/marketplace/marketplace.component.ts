@@ -22,7 +22,6 @@ export class MarketplaceComponent implements OnInit {
     this.getTasks()
   }
 
-
   giveHelp(task: task) {
     this.help.accept(task).then((res) => {
       console.log(res)
@@ -36,5 +35,21 @@ export class MarketplaceComponent implements OnInit {
     this.help.getTasks().then((res: task[]) => {
       this.tasks = res
     })
+  }
+
+  /** check if user is qualified to view task */
+  checkTag(task: task): boolean {
+    if (task.qualifications && !this.SessionService.userTags.length) {
+      return false
+    } else if (task.qualifications) {
+      for (let qual of task.qualifications) {
+        if (!this.SessionService.userTags.includes(qual)) {
+          return false
+        }
+      }
+      return true
+    } else {
+      return true
+    }
   }
 }

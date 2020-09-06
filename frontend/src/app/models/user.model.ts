@@ -1,7 +1,7 @@
 export class userModel {
     username: string
     password: string
-    category: string
+    category: string[]
     caregivers: []
     customers: []
     schedule: []

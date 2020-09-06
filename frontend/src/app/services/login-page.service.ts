@@ -18,7 +18,7 @@ export class LoginPageService {
     return this.http.post<{
       username: string
       password: string
-      category: string
+      category: string[]
       caregivers: []
       customers: []
       schedule: []

@@ -61,7 +61,7 @@ frequencies: any[] = [
       description: this.form.value.description,
       caregiver: "",
       customer: localStorage.getItem('username'),
-      qualifications: this.form.value.qualifications,
+      qualifications: this.tags,
     }
     console.log(newTask)
     this.createTaskService.createTask(newTask)
