@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarView, } from 'angular-calendar';
 import { SessionService } from 'src/app/services/session.service';
+import parseISO from 'date-fns/parseISO'
 
 const colors: any = {
   customer: {
@@ -66,13 +67,14 @@ export class CalendarComponent implements OnInit{
         this.recurringEvents.forEach(event =>{
           for(let i=0; i < 365/event.frequency; i ++){
             this.events.push({
-            start : addDays(event.start, Math.fround(i * event.frequency)),
-            end: addDays(event.end, Math.fround(i * event.frequency)),
+            start : addDays(event.start, i * event.frequency),
+            end: addDays(event.end, i * event.frequency),
             title: event.title,
             color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
             })
           }
         })
+        console.log(this.events)
       }).catch((err) => {
         console.log(err)
       })
