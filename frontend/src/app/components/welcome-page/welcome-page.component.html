@@ -8,14 +8,14 @@
 <!-- if logged in -->
 <div class="container" *ngIf='session'>
     <mat-card>
-        <button>Help</button>
+        <button mat-raised-button class="text-success" routerLink='/help-someone'>Help Someone</button>
     </mat-card>
     
     <br>
     <hr>
     <br>
 
-    <button mat-raised-button color='primary'>Get Help</button>
+    <button mat-raised-button color='primary' routerLink='/get-help'>Get Help</button>
     
     <br>
     <hr>
@@ -23,7 +23,7 @@
 
     <mat-card>
         <mat-card-content>
-            <span>Schedule</span>
+            <app-calendar></app-calendar>
         </mat-card-content>
     </mat-card>
 </div>
