@@ -61,7 +61,7 @@ export class CalendarComponent implements OnInit{
   ngOnInit(){
     this.calendarService.getSchedule().then((res: any) => {
       this.recurringEvents = res
-      console.log(this.recurringEvents)
+      console.log(res)
       this.recurringEvents.forEach(event =>{
         for(let i=0; i < 365/event.frequency; i ++){
           this.events.push({

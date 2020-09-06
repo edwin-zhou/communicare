@@ -12,6 +12,7 @@ export class CalendarService {
   getSchedule() {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.url, {}).subscribe((res) => {
+        console.log(res)
         resolve(res)
       }, (err) => {
         reject(err)
