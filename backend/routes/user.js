@@ -8,16 +8,15 @@ router.post('/delete', (req, result, next) => {
       
 })
 
-router.get('/schedule', (req, result, next) => {
+router.post('/schedule', (req, result, next) => {
     User.find({username: req.query.username}, (err, res) => {
         if (err) {
           result.status(500).json({
             message: err
           })
         } else {
-          result.status(200).json({
-            schedule: res.schedule
-          })
+          console.log(res)
+          result.status(200).json(res[0].schedule)
         }
     })
 })
