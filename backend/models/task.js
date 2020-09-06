@@ -5,6 +5,7 @@ const taskSchema = mongoose.Schema({
     end: Date,
     title: String,
     description: String,
+    frequency: Number,
     caregiver: {type: String, default: ""},
     customer: String,
     qualifications: Array,

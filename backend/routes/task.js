@@ -24,6 +24,7 @@ router.post('', (req, result, next) => {
                               end: req.body.end, 
                               title: req.body.title,
                               description: req.body.description,
+                              frequency: req.body.frequency,
                               customer: req.body.customer,
                               qualifications: req.body.qualifications})
     newTask.save()

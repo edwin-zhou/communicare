@@ -1,3 +1,4 @@
+import { CalendarService } from './../../services/calendar.service';
 import { Component,ChangeDetectionStrategy,ViewChild,TemplateRef, ChangeDetectorRef, OnInit,} from '@angular/core';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours} from 'date-fns';
 import { Subject } from 'rxjs';
@@ -49,27 +50,29 @@ export class CalendarComponent implements OnInit{
     },
   ];
   events: CalendarEvent[] = []
-
+  activeDayIsOpen: boolean = true;
+  
+  constructor(private modal: NgbModal, private calendarService: CalendarService) {}
 
   ngOnInit(){
-    var i
-    this.recurringEvents.forEach(event =>{
-      for(i=0; i < 365/event.frequency; i ++){
-        this.events.push({
-        start : addDays(event.start, i * event.frequency),
-        end: addDays(event.end, i * event.frequency),
-        title: event.title,
-        color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
-        })
-      }
-    })
+    this.calendarService.getSchedule().then((res: any) => {
+      this.recurringEvents = res
+      console.log(this.recurringEvents)
+      this.recurringEvents.forEach(event =>{
+        for(let i=0; i < 365/event.frequency; i ++){
+          this.events.push({
+          start : addDays(event.start, i * event.frequency),
+          end: addDays(event.end, i * event.frequency),
+          title: event.title,
+          color : (sessionStorage.getItem("username") === event.customer) ? colors.customer : colors.caregiver
+          })
+        }
+      })
+    }).catch((err) => {
+      console.log(err)
+    })    
   }
-  activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,
-              private SessionService: SessionService) {
-    this.session = this.SessionService.session()
-  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
