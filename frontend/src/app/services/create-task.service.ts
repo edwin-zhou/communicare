@@ -14,7 +14,7 @@ export class CreateTaskService {
   createTask(task: task) {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.url, task).subscribe((res) => {
-        resolve('xd')
+        resolve('task created')
       }, (err) => {
         reject('not xd')
       })

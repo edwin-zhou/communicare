@@ -1,13 +1,13 @@
 <div *ngIf='session'>
     <mat-grid-list
-        class="container-fluid"
-        cols='4'>
+        class="container"
+        cols='3'>
         <span *ngIf='!tasks.length' class="row">
             <button mat-raised-button class='text-success'>Nothing So Far...</button>
         </span>
         <div *ngFor='let task of tasks'>
             <mat-grid-tile *ngIf='checkTag(task)'>
-                <mat-card style="min-height: 200px; min-width: 200px;">
+                <mat-card style="height: 250px; width: 400px;">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>{{task.customer}}</mat-card-title>
@@ -23,7 +23,7 @@
                         </mat-chip-list>
                     </mat-card-actions>
                 </mat-card>
-            </mat-grid-tile>           
+            </mat-grid-tile>
         </div>
 
     </mat-grid-list>

@@ -10,7 +10,7 @@ import { task } from './../../models/task.model'
 })
 export class MarketplaceComponent implements OnInit {
   tasks: task[] = []
-  cols: number = 5 
+  cols: number = 5
   session: boolean = false
 
   constructor(public help: HelpService,
@@ -39,20 +39,20 @@ export class MarketplaceComponent implements OnInit {
 
   /** check if user is qualified to view task */
   checkTag(task: task): boolean {
-    console.log(this.SessionService.userTags)
-    console.log()
-    if (task.qualifications.length >= 1 && this.SessionService.userTags.length == 0) {
-      return false
-    } else if (task.qualifications) {
-      for (let qual of task.qualifications) {
+    return true;
+    // console.log(task);
+    // if (task.qualifications.length >= 1 && this.SessionService.userTags.length == 0) {
+    //   return false
+    // } else if (task.qualifications) {
+    //   for (let qual of task.qualifications) {
 
-        if (!this.SessionService.userTags.includes(qual)) {
-          return false
-        }
-      }
-      return true
-    } else {
-      return true
-    }
+    //     if (!this.SessionService.userTags.includes(qual)) {
+    //       return false
+    //     }
+    //   }
+    //   return true
+    // } else {
+    //   return true
+    // }
   }
 }

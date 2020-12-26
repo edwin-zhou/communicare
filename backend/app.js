@@ -32,7 +32,8 @@ app.use((req, res) => {
 })
 
 // set database URL:
-const dbURL = 'mongodb+srv://admin:admin@communicare.s0a4z.azure.mongodb.net/<communicare>?retryWrites=true&w=majority'
+const dbURL = "mongodb+srv://username:username@cluster0.cjgm2.mongodb.net/<communicare>?retryWrites=true&w=majority"
+
 
 // connect mongoose to Mongodb
 mongoose.connect(dbURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}, (err) => {

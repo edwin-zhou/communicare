@@ -29,7 +29,7 @@ export class CalendarComponent implements OnInit{
   session: boolean = false
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Day;
+  view: CalendarView = CalendarView.Month;
 
 
   CalendarView = CalendarView;
@@ -64,7 +64,8 @@ export class CalendarComponent implements OnInit{
   ngOnInit(){
     if (this.SessionService.session()) {
       this.calendarService.getTasks(sessionStorage.getItem("username")).then((res: any) => {
-        this.recurringEvents = res
+        console.log(res)
+        this.recurringEvents = res;
         this.recurringEvents.forEach(event =>{
           for(let i=0; i < 365/event.frequency; i ++){
             event.start = new Date()
@@ -74,7 +75,7 @@ export class CalendarComponent implements OnInit{
             description: event.description,
             qualifications: event.qualifications,
             start :  addDays(event.start, i * event.frequency),
-            end: addDays(event.end, i * event.frequency),
+            end: addHours(addDays(event.end, i * event.frequency),2),
             frequency: event.frequency,
             caregiver: event.caregiver,
             customer: event.customer,
@@ -82,7 +83,6 @@ export class CalendarComponent implements OnInit{
             })
           }
         })
-        console.log(this.events)
       }).catch((err) => {
         console.log(err)
       })

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema({
-    start: Date,
-    end: Date,
+    start: String,
+    end: String,
     title: String,
     description: String,
     frequency: Number,

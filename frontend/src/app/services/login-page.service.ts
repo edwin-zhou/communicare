@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { userModel } from '../models/user.model';
+import { environment } from './../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginPageService {
-  url = "http://localhost:3000/api/user/login"
+  url = environment.mainURL + "/api/user/login"
   constructor(
     private http: HttpClient,
     private router: Router,

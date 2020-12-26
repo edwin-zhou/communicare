@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CalendarService {
-  url = environment.mainURL + "/api/task/searchTasks"
+  url = environment.mainURL + "/api/task/searchTasks/"
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,8 @@ export class CalendarService {
   getTasks(username: string) {
     return new Promise((resolve, reject) => {
       this.http
-      .post<{message: string; data: any}>(this.url, {username: username}).subscribe((res) => {
+      .get<{message: string; data: any}>(this.url+ username).subscribe((res) => {
+        console.log(res);
         resolve(res)
       }, (err) => {
         reject(err)

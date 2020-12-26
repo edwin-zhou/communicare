@@ -18,8 +18,8 @@ router.post('/help', (req, result, next) => {
     })
 })
 
-router.post('/searchTasks',(req,result,next)=>{
-    Task.find({$or: [{caregiver:req.body.username}, {customer: req.body.username}]}, (err, res) => {
+router.get('/searchTasks/:username',(req,result)=>{
+    Task.find({$or: [{caregiver:req.params.username}, {customer: req.params.username}]}, (err, res) => {
         if (err) {
             result.status(500).json({
                 message: err

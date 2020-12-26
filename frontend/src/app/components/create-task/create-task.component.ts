@@ -49,7 +49,6 @@ frequencies: any[] = [
   }
 
   onSaveTask() {
-    console.log(this.form)
     if (this.form.invalid) {
       return;
     }
